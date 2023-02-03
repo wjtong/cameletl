@@ -2,6 +2,7 @@ package com.banfftech.camel;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.amqp.AMQPComponent;
+import org.apache.camel.component.amqp.AMQPConnectionDetails;
 import org.apache.camel.model.rest.RestBindingMode;
 import org.apache.camel.support.builder.ExpressionBuilder;
 
@@ -19,8 +20,8 @@ public class Routes extends RouteBuilder {
 
         rest("/parties")
                 .post()
-                .to("amqp:queue:camelQueue")
-                .to("direct:getParties");
+                .to("amqp:queue:quarkusQueue");
+//                .to("direct:getParties");
 
         from("direct:getParties")
 //                .setHeader("CamelOlingo4.$top", ExpressionBuilder.simpleExpression("5"))
