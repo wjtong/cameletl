@@ -26,9 +26,9 @@ public class Routes extends RouteBuilder {
         from("direct:getParties")
 //                .setHeader("CamelOlingo4.$top", ExpressionBuilder.simpleExpression("5"))
                 .to("log:info")
-                .process(new OdataProcessor())
-//                .to("olingo4://read/Parties?serviceUri=http://gbms.gbms2.banff-tech.com/odata/control/odataAppSvc/demo");
-                .to("olingo4://read/Parties");
+//                .to("olingo4://read/Parties?serviceUri=http://gbms.gbms2.banff-tech.com/odata/control/odataAppSvc/demo")
+                .to("olingo4://read/Parties")
+                .process(new OdataProcessor());
     }
 
     @Produces
