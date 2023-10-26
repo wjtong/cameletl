@@ -26,12 +26,13 @@ public class Routes extends RouteBuilder {
                 .to("amqp:queue:quarkusQueue");
 //                .to("direct:getParties");
         rest("/ClosePrevGlConciliation")
-                .post().type(ActionParam.class)
+                .post()//.type(ActionParam.class)
+                .to("log:info")
                 .to("direct:ClosePrevGlConciliation");
         from("direct:ClosePrevGlConciliation")
                 .setHeader(Exchange.HTTP_METHOD, constant("POST"))
                 .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-                .to("olingo4://action/ClosePrevGlConciliation?data={\"partyId\":\"10000\"}")
+                .to("olingo4://action/ClosePrevGlConciliation")
                 .process(new OdataProcessor());
 
         from("direct:getParties")
