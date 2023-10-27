@@ -5,6 +5,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.amqp.AMQPComponent;
 import org.apache.camel.component.amqp.AMQPConnectionDetails;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.apache.camel.model.rest.RestParamType;
 import org.apache.camel.support.builder.ExpressionBuilder;
 import org.apache.olingo.client.api.domain.ClientEntity;
 import org.apache.olingo.client.core.domain.ClientEntityImpl;
@@ -26,10 +27,11 @@ public class Routes extends RouteBuilder {
                 .to("amqp:queue:quarkusQueue");
 //                .to("direct:getParties");
         rest("/ClosePrevGlConciliation")
-                .post()//.type(ActionParam.class)
-                .to("log:info")
+                .post()
+                .type(ActionParam.class)
                 .to("direct:ClosePrevGlConciliation");
         from("direct:ClosePrevGlConciliation")
+                .to("bean:paramService?method=transForm(${body})")
                 .setHeader(Exchange.HTTP_METHOD, constant("POST"))
                 .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
                 .to("olingo4://action/ClosePrevGlConciliation")

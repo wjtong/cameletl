@@ -8,9 +8,9 @@ public class OdataProcessor implements Processor {
     public void process(Exchange exchange) throws Exception {
         System.out.println(exchange.getMessage().getHeaders().toString());
         System.out.println("---------------------------------------------");
-//        if (exchange.getMessage().getBody() != null) {
-//            System.out.printf(exchange.getMessage().getBody().toString(), null);
-//            System.out.println("---------------------------------------------");
-//        }
+        if (exchange.getMessage().getBody() != null) {
+            System.out.printf(exchange.getMessage().getBody().toString(), null);
+            System.out.println("---------------------------------------------");
+        }
     }
 }
