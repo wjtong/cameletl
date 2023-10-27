@@ -26,6 +26,9 @@ public class Routes extends RouteBuilder {
                 .post()
                 .to("amqp:queue:quarkusQueue");
 //                .to("direct:getParties");
+
+
+
         rest("/ClosePrevGlConciliation")
                 .post()
                 .type(ActionParam.class)
@@ -35,7 +38,12 @@ public class Routes extends RouteBuilder {
                 .setHeader(Exchange.HTTP_METHOD, constant("POST"))
                 .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
                 .to("olingo4://action/ClosePrevGlConciliation")
-                .process(new OdataProcessor());
+//                .process(new OdataProcessor())
+                .outputType(ActionResult.class)
+                .to("bean:paramService?method=translateResult(${body})");
+
+
+
 
         from("direct:getParties")
 //                .setHeader("CamelOlingo4.$top", ExpressionBuilder.simpleExpression("5"))
