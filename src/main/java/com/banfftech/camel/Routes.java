@@ -1,16 +1,10 @@
 package com.banfftech.camel;
 
+import jakarta.enterprise.inject.Produces;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.amqp.AMQPComponent;
-import org.apache.camel.component.amqp.AMQPConnectionDetails;
 import org.apache.camel.model.rest.RestBindingMode;
-import org.apache.camel.model.rest.RestParamType;
-import org.apache.camel.support.builder.ExpressionBuilder;
-import org.apache.olingo.client.api.domain.ClientEntity;
-import org.apache.olingo.client.core.domain.ClientEntityImpl;
-
-import javax.enterprise.inject.Produces;
 
 public class Routes extends RouteBuilder {
     @Override

@@ -1,10 +1,9 @@
 package com.banfftech.camel;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
 import org.apache.olingo.client.api.domain.ClientEntity;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
 
 @Named("paramService")
 @ApplicationScoped
