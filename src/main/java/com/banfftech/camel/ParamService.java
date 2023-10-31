@@ -43,4 +43,17 @@ public class ParamService {
         actionResult.setResultMembers(resultMembers);
         return actionResult;
     }
+
+    public ActionResult translateResult(String errorMsg) {
+        ActionResult actionResult = new ActionResult();
+        actionResult.setPartyId("error");
+        actionResult.setNumberOfFinAccount(0);
+        ResultMember resultMember1 = new ResultMember();
+        resultMember1.setYears(0);
+        resultMember1.setStoreId(errorMsg);
+        List<ResultMember> resultMembers = new ArrayList<>();
+        resultMembers.add(resultMember1);
+        actionResult.setResultMembers(resultMembers);
+        return actionResult;
+    }
 }
