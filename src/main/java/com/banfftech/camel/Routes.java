@@ -1,5 +1,6 @@
 package com.banfftech.camel;
 
+import io.vertx.core.json.JsonObject;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.amqp.AMQPComponent;
@@ -34,6 +35,10 @@ public class Routes extends RouteBuilder {
                 .type(ActionParam.class)
                 .to("direct:ClosePrevGlConciliation");
         from("direct:ClosePrevGlConciliation")
+                .process(exchange -> {
+                    Object body = exchange.getMessage().getBody();
+                    System.out.println(body);
+                })
                 .to("bean:paramService?method=transForm(${body})")
                 .setHeader(Exchange.HTTP_METHOD, constant("POST"))
                 .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
