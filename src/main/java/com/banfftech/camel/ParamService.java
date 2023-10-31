@@ -1,19 +1,15 @@
 package com.banfftech.camel;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
 import org.apache.olingo.client.api.ODataClient;
 import org.apache.olingo.client.api.domain.ClientEntity;
 import org.apache.olingo.client.api.domain.ClientObjectFactory;
 import org.apache.olingo.client.core.ODataClientFactory;
-import org.apache.olingo.client.core.domain.ClientEntityImpl;
-import org.apache.olingo.commons.core.edm.ActionMapKey;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Named("paramService")
 @ApplicationScoped
